@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../store/AuthContext';
 import * as Yup from 'yup';
 import style from './LoginForm.module.scss';
+import { useHistory } from 'react-router-dom';
 
 const initValues = {
   email: '',
@@ -11,11 +12,28 @@ const initValues = {
 
 function LoginForm() {
   const { login } = useContext(AuthContext);
+  const history = useHistory();
 
   const formik = useFormik({
     initialValues: initValues,
     onSubmit: async (values) => {
-      console.log(values);
+      const newLogin = {
+        email: values.email,
+        password: values.password,
+      };
+      const resp = await fetch('https://autumn-delicate-wilderness.glitch.me/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newLogin),
+      });
+      const result = await resp.json();
+      console.log(result);
+      if (result.token) {
+        login(result.token);
+        history.push('/');
+      }
     },
     validationSchema: Yup.object({
       email: Yup.string().required('This field is required').email('Not a valid email'),
@@ -29,7 +47,7 @@ function LoginForm() {
   return (
     <form onSubmit={formik.handleSubmit} className={style.form}>
       <div className={style.inputContainer}>
-        <label for='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input
           className={formik.touched.email && formik.errors.email ? `${style.errorInput}` : ''}
           type='text'
@@ -46,7 +64,7 @@ function LoginForm() {
         )}
       </div>
       <div className={style.inputContainer}>
-        <label for='password'>Password</label>
+        <label htmlFor='password'>Password</label>
         <input
           className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
           name='password'
