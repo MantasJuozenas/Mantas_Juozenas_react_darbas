@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import './App.css';
+import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import { AuthContext } from './components/store/AuthContext';
 import HomePage from './page/Home/HomePage';
@@ -29,6 +30,7 @@ function App() {
           <h2>Page not found</h2>
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

@@ -10,7 +10,7 @@ function Header() {
     <header className={style.main}>
       <div className={style.header}>
         <Link className={style.navLink} to='/'>
-          LOGO
+          <img src='http://assets.stickpng.com/thumbs/584817d6cef1014c0b5e4999.png' alt='' />
         </Link>
         <nav>
           {isUserLoggedIn ? (
