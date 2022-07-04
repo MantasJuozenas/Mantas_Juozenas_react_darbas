@@ -1,7 +1,9 @@
 import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { AuthContext } from '../store/AuthContext';
+
 import style from './Header.module.scss';
+import img1 from '../../assets/logo.png';
+import { AuthContext } from '../../assets/store/AuthContext';
 
 function Header() {
   const { isUserLoggedIn, logout } = useContext(AuthContext);
@@ -10,7 +12,7 @@ function Header() {
     <header className={style.main}>
       <div className={style.header}>
         <Link className={style.navLink} to='/'>
-          <img src='http://assets.stickpng.com/thumbs/584817d6cef1014c0b5e4999.png' alt='' />
+          <img src={img1} alt='' />
         </Link>
         <nav>
           {isUserLoggedIn ? (

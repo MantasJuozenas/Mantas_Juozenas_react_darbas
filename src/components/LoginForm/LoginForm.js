@@ -1,9 +1,10 @@
 import { useFormik } from 'formik';
-import React, { useContext } from 'react';
-import { AuthContext } from '../store/AuthContext';
+import React, { useContext, useState } from 'react';
+
 import * as Yup from 'yup';
 import style from './LoginForm.module.scss';
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../assets/store/AuthContext';
 
 const initValues = {
   email: '',
@@ -13,6 +14,7 @@ const initValues = {
 function LoginForm() {
   const { login } = useContext(AuthContext);
   const history = useHistory();
+  const [error, setError] = useState(false);
 
   const formik = useFormik({
     initialValues: initValues,
@@ -29,11 +31,11 @@ function LoginForm() {
         body: JSON.stringify(newLogin),
       });
       const result = await resp.json();
-      console.log(result);
       if (result.token) {
         login(result.token);
         history.push('/');
       }
+      setError(result.err);
     },
     validationSchema: Yup.object({
       email: Yup.string().required('This field is required').email('Not a valid email'),
@@ -60,7 +62,7 @@ function LoginForm() {
         {formik.touched.email && formik.errors.email ? (
           <p className={style.errorMsg}>{formik.errors.email}</p>
         ) : (
-          <p className={style.padding}></p>
+          <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
         )}
       </div>
       <div className={style.inputContainer}>
@@ -77,7 +79,7 @@ function LoginForm() {
         {formik.touched.password && formik.errors.password ? (
           <p className={style.errorMsg}>{formik.errors.password}</p>
         ) : (
-          <p className={style.padding}></p>
+          <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
         )}
       </div>
       <button type='submit'>Login</button>
