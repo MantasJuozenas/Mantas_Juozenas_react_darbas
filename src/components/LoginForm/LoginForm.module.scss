@@ -5,7 +5,7 @@
   padding: 15px;
   border-radius: 10px;
   box-shadow: lightgray 2px 4px 10px;
-  max-height: 360px;
+  max-height: 600px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
     }
 
     .padding {
-      padding: 0 9px;
+      padding: 9px 0px;
     }
 
     p {
@@ -63,5 +63,30 @@
 
   button:hover {
     box-shadow: lightgray 2px 4px 10px;
+  }
+}
+
+.mgtop {
+  margin-top: 100px;
+}
+
+.onSuccess {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // height: ;
+  color: rgb(228, 228, 228);
+  box-shadow: lightgray 2px 4px 10px;
+  border: 2px solid lightgray;
+  padding: 15px;
+  width: 40%;
+  margin: 30px auto;
+  border-radius: 5px;
+  margin-top: 50px;
+
+  a {
+    text-decoration: none;
+    color: rgb(234, 27, 34);
   }
 }

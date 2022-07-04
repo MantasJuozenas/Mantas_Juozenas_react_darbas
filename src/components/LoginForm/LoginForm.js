@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
 import * as Yup from 'yup';
 import style from './LoginForm.module.scss';
 import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../assets/store/AuthContext';
+import { AuthContext } from '../../store/AuthContext';
 
 const initValues = {
   email: '',

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Route } from 'react-router';
 
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../assets/store/AuthContext';
+import { AuthContext } from '../store/AuthContext';
 
 function ProtectedRoute(props) {
   const { isUserLoggedIn } = useContext(AuthContext);

@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import style from './Header.module.scss';
 import img1 from '../../assets/logo.png';
-import { AuthContext } from '../../assets/store/AuthContext';
+import { AuthContext } from '../../store/AuthContext';
 
 function Header() {
   const { isUserLoggedIn, logout } = useContext(AuthContext);
