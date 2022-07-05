@@ -132,9 +132,12 @@
   padding: 20px;
   border-radius: 15px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   button {
-    width: 20%;
     padding: 10px 15px;
     background-color: rgb(112, 83, 213);
     color: white;

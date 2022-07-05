@@ -9,6 +9,22 @@ import style from './HomePage.module.scss';
 function HomePage() {
   const { logout, token } = useContext(AuthContext);
   const [posts, setPosts] = useState(false);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+
+  function handleSearchInput(e) {
+    setSearchInput(e.target.value);
+  }
+
+  function filtering() {
+    const postsCopy = [...posts];
+    if (Number(searchInput) == searchInput) {
+      const filtered = postsCopy.filter((post) => post.id.includes(Number(searchInput)));
+      setFilteredPosts(filtered);
+    }
+    const filtered = postsCopy.filter((post) => post.title.toLowerCase().includes(searchInput.toLowerCase()));
+    setFilteredPosts(filtered);
+  }
 
   async function fetchPosts() {
     const resp = await fetch('https://autumn-delicate-wilderness.glitch.me/v1/content/skills', {
@@ -22,7 +38,10 @@ function HomePage() {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+    if (searchInput) {
+      filtering();
+    }
+  }, [searchInput]);
 
   return (
     <div className={style.mainContainer}>
@@ -40,20 +59,29 @@ function HomePage() {
         </NavLink>
       </nav>
       <div>
-        <input type='text' />
+        <input
+          type='text'
+          placeholder='Galite ieškoti įrašų pagal antraštę'
+          onChange={(e) => handleSearchInput(e)}
+          value={searchInput}
+        />
       </div>
-      <div>
-        <h1 className={style.title}>Įrašai</h1>
+      <div className={style.info}>
+        <p className={style.title}>Įrašai</p>
       </div>
       {!Array.isArray(posts) ? (
         <h2>Kraunama...</h2>
-      ) : !posts.length === 0 ? (
+      ) : posts.length === 0 ? (
         <h2>Nėra įrašų</h2>
       ) : (
         <CardList>
-          {posts.map((post) => (
-            <Card data={post} />
-          ))}
+          {searchInput
+            ? filteredPosts.map((post, i) => {
+                return <Card key={i} data={post} />;
+              })
+            : posts.map((post, i) => {
+                return <Card key={i} data={post} />;
+              })}
         </CardList>
       )}
     </div>

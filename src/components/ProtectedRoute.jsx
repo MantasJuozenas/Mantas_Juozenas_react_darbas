@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../store/AuthContext';
+import style from './LoginForm/LoginForm.module.scss';
 
 function ProtectedRoute(props) {
   const { isUserLoggedIn } = useContext(AuthContext);
@@ -13,10 +14,11 @@ function ProtectedRoute(props) {
       {isUserLoggedIn ? (
         children
       ) : (
-        <div className='container'>
-          <h2>Please login</h2>
-          <div className='alert alert-danger'>You are not logged in!!!</div>
-          <Link to={'/login'}>Login here 🌏</Link>
+        <div className={style.successMessage}>
+          <p>Jūs nesate prisijungę, norėdami pamatyti daugiau prisijunkite!</p>
+          <Link className={style.navLink} to={'/login'}>
+            <button>Prisijungti</button>
+          </Link>
         </div>
       )}
     </Route>
