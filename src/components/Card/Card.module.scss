@@ -1,0 +1,25 @@
+.card {
+  box-shadow: 2px 6px 18px lightgray;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-radius: 15px;
+  gap: 10px;
+  background-color: #fff;
+
+  .info {
+    h3 {
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .text {
+    padding-top: 5px;
+    color: rgb(31, 31, 31);
+  }
+}

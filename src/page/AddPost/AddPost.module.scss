@@ -1,0 +1,60 @@
+.mainContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    font-weight: normal;
+  }
+
+  nav {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    .navLink {
+      border: 1px solid lightgray;
+      text-decoration: none;
+      color: lightgray;
+      font-size: 12px;
+      padding: 20px 60px;
+      border-radius: 50px;
+      width: 160px;
+    }
+
+    .navLinkReg {
+      border: 1px solid lightgray;
+      text-decoration: none;
+      color: lightgray;
+      font-size: 12px;
+      padding: 20px 60px;
+      border-radius: 50px;
+      margin-left: -45px;
+      width: 235px;
+    }
+
+    .active {
+      border-color: rgb(112, 83, 213);
+      color: rgb(112, 83, 213);
+      overflow: hidden;
+      background-color: white;
+      position: relative;
+      z-index: 10;
+    }
+
+    .btn {
+      width: 30%;
+      margin-left: 200px;
+      padding: 10px 20px;
+      background-color: rgb(112, 83, 213);
+      color: white;
+      border: none;
+      border-radius: 25px;
+    }
+  }
+}

@@ -54,10 +54,10 @@ function LoginForm() {
         <p className={style.loginTitle}>Susipažinkime</p>
         <nav>
           <NavLink className={`${style.navLink} ${active ? style.active : ''}`} to='/login'>
-            Login
+            Prisijungti
           </NavLink>
           <NavLink className={style.navLinkReg} to='/register' onClick={() => setActive(false)}>
-            Register
+            Registruotis
           </NavLink>
         </nav>
         <div className={style.inputContainer}>

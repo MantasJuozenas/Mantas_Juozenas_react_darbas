@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import ProtectedRoute from './components/ProtectedRoute';
 import Wrapper from './components/Wrapper/Wrapper';
+import AddPost from './page/AddPost/AddPost';
 import HomePage from './page/Home/HomePage';
 import LoginPage from './page/Login/LoginPage';
 import RegisterPage from './page/Register/RegisterPage';
@@ -20,6 +21,9 @@ function App() {
           <Route path='/register'>
             <RegisterPage />
           </Route>
+          <ProtectedRoute path={'/addpost'}>
+            <AddPost />
+          </ProtectedRoute>
           <ProtectedRoute path={'/'}>
             <HomePage />
           </ProtectedRoute>
