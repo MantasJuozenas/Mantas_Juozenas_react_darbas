@@ -3,8 +3,9 @@ import React, { useContext, useState } from 'react';
 
 import * as Yup from 'yup';
 import style from './LoginForm.module.scss';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { AuthContext } from '../../store/AuthContext';
+import clock from '../../assets/clock.svg';
 
 const initValues = {
   email: '',
@@ -15,6 +16,7 @@ function LoginForm() {
   const { login } = useContext(AuthContext);
   const history = useHistory();
   const [error, setError] = useState(false);
+  const [active, setActive] = useState(true);
 
   const formik = useFormik({
     initialValues: initValues,
@@ -48,41 +50,56 @@ function LoginForm() {
 
   return (
     <form onSubmit={formik.handleSubmit} className={style.form}>
-      <div className={style.inputContainer}>
-        <label htmlFor='email'>Email</label>
-        <input
-          className={formik.touched.email && formik.errors.email ? `${style.errorInput}` : ''}
-          type='text'
-          placeholder='Your email'
-          name='email'
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          onBlur={formik.handleBlur}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <p className={style.errorMsg}>{formik.errors.email}</p>
-        ) : (
-          <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
-        )}
+      <div>
+        <p className={style.loginTitle}>Susipažinkime</p>
+        <nav>
+          <NavLink className={`${style.navLink} ${active ? style.active : ''}`} to='/login'>
+            Login
+          </NavLink>
+          <NavLink className={style.navLinkReg} to='/register' onClick={() => setActive(false)}>
+            Register
+          </NavLink>
+        </nav>
+        <div className={style.inputContainer}>
+          <input
+            className={formik.touched.email && formik.errors.email ? `${style.errorInput}` : ''}
+            type='text'
+            placeholder='El. Paštas (pvz Jonas@gmail.com)'
+            name='email'
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <p className={style.errorMsg}>{formik.errors.email}</p>
+          ) : (
+            <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
+          )}
+        </div>
+        <div className={style.inputContainer}>
+          <input
+            className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
+            name='password'
+            type='password'
+            placeholder='Jūsų slaptažodis'
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            onBlur={formik.handleBlur}
+          />
+          {formik.touched.password && formik.errors.password ? (
+            <p className={style.errorMsg}>{formik.errors.password}</p>
+          ) : (
+            <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
+          )}
+        </div>
+        <button type='submit'>Prisijungti</button>
       </div>
-      <div className={style.inputContainer}>
-        <label htmlFor='password'>Password</label>
-        <input
-          className={formik.touched.password && formik.errors.password ? `${style.errorInput}` : ''}
-          name='password'
-          type='password'
-          placeholder='Your password'
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          onBlur={formik.handleBlur}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <p className={style.errorMsg}>{formik.errors.password}</p>
-        ) : (
-          <p className={`${style.padding} ${style.errorMsg}`}>{error ? error : ''}</p>
-        )}
+      <div>
+        <div className={style.message}>
+          <p>Prašome prisijungti įrašant el. paštą ir slaptažodį</p>
+        </div>
+        <img className={style.clock} src={clock} alt='clock' />
       </div>
-      <button type='submit'>Login</button>
     </form>
   );
 }

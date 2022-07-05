@@ -18,9 +18,11 @@ function AuthProvider(props) {
 
   function login(userToken) {
     setToken(userToken);
+    localStorage.setItem('userToken', userToken);
   }
   function logout() {
     setToken(null);
+    localStorage.removeItem('userToken');
   }
 
   const ctx = {

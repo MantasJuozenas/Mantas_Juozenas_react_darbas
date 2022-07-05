@@ -7,24 +7,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
+  height: 20px;
+  // max-width: 1200px;
+  // margin: 0 auto;
 
-  height: 50px;
-  max-width: 1200px;
-  margin: 0 auto;
+  nav {
+    .navLink {
+      text-decoration: none;
+      color: rgb(234, 27, 33);
+      padding: 15px 20px;
+      transition: all 0.2s ease-in-out;
+    }
 
-  .navLink {
-    text-decoration: none;
-    color: rgb(234, 27, 33);
-    padding: 15px 20px;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .navLink:hover {
-    transform: scale(1.2);
+    .navLink:hover {
+      color: rgb(252, 158, 158);
+    }
   }
 
   img {
     width: 100%;
-    height: 120px;
+    height: 40px;
   }
 }
