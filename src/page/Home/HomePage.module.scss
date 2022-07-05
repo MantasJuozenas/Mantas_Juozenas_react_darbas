@@ -12,6 +12,7 @@
 
   nav {
     margin-bottom: 50px;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +24,7 @@
       font-size: 12px;
       padding: 20px 60px;
       border-radius: 50px;
-      width: 160px;
+      max-width: 160px;
     }
 
     .navLinkReg {
@@ -34,7 +35,7 @@
       padding: 20px 60px;
       border-radius: 50px;
       margin-left: -45px;
-      width: 195px;
+      max-width: 195px;
     }
 
     .active {
@@ -47,13 +48,28 @@
     }
 
     .btn {
-      width: 140px;
+      max-width: 140px;
       margin-left: 200px;
       padding: 10px 20px;
       background-color: rgb(112, 83, 213);
       color: white;
       border: none;
       border-radius: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mainContainer {
+    nav {
+      .navLink {
+        width: 140px;
+        padding: 20px 50px;
+      }
+
+      .btn {
+        margin-left: 20px;
+      }
     }
   }
 }

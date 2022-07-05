@@ -40,6 +40,9 @@ function HomePage() {
         </NavLink>
       </nav>
       <div>
+        <input type='text' />
+      </div>
+      <div>
         <h1 className={style.title}>Įrašai</h1>
       </div>
       {!Array.isArray(posts) ? (

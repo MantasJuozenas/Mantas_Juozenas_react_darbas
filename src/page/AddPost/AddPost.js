@@ -17,9 +17,11 @@ function AddPost() {
         <NavLink className={`${style.navLinkReg} ${style.active}`} to='/addpost'>
           Pridėti įrašą
         </NavLink>
-        <button onClick={logout} className={style.btn}>
-          Atsijungti
-        </button>
+        <NavLink to='/login'>
+          <button onClick={logout} className={style.btn}>
+            Atsijungti
+          </button>
+        </NavLink>
       </nav>
       <AddPostForm />
     </div>
