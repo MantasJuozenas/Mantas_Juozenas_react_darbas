@@ -19,8 +19,9 @@ function HomePage() {
   function filtering() {
     const postsCopy = [...posts];
     if (Number(searchInput) == searchInput) {
-      const filtered = postsCopy.filter((post) => post.id.includes(Number(searchInput)));
+      const filtered = postsCopy.filter((post) => post.id.toString().includes(searchInput));
       setFilteredPosts(filtered);
+      return;
     }
     const filtered = postsCopy.filter((post) => post.title.toLowerCase().includes(searchInput.toLowerCase()));
     setFilteredPosts(filtered);
@@ -61,13 +62,10 @@ function HomePage() {
       <div>
         <input
           type='text'
-          placeholder='Galite ieškoti įrašų pagal antraštę'
+          placeholder='Ieškokite pagal antraštę arba id'
           onChange={(e) => handleSearchInput(e)}
           value={searchInput}
         />
-      </div>
-      <div className={style.info}>
-        <p className={style.title}>Įrašai</p>
       </div>
       {!Array.isArray(posts) ? (
         <h2>Kraunama...</h2>

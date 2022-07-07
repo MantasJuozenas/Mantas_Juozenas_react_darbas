@@ -24,11 +24,13 @@ function App() {
           <ProtectedRoute path={'/addpost'}>
             <AddPost />
           </ProtectedRoute>
-          <ProtectedRoute path={'/'}>
+          <ProtectedRoute exact path={'/'}>
             <HomePage />
           </ProtectedRoute>
           <Route path='*'>
-            <h2>Page not found</h2>
+            <div className='container'>
+              <h2>Page not found</h2>
+            </div>
           </Route>
         </Switch>
         <Footer />
