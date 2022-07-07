@@ -33,7 +33,6 @@ function AddPostForm() {
         body: JSON.stringify(newPost),
       });
       const result = await resp.json();
-      console.log(result);
       if (result.msg) {
         setCreated(true);
       }
